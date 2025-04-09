@@ -5,19 +5,20 @@ import User from '../models/User.js';
 const router = express.Router();
 
 //i shld hit this endpoint when i call a default a api/users
-router.get('/', async (req, res) => {  // Added req parameter here
+router.get('/', async (res) => {
+
   try {
     const users = await User.find().select('-password');
-    console.log("found users: ", users);
+    console.log("found users: ", users)
+    res.json(users);
 
-    if (!users || users.length === 0) {
+
+    if (!users) {
       return res.status(404).json({ 
         success: false,
         message: 'No users found' 
       });
     }
-
-    res.json(users);
 
   } catch (error) {
     console.log(error)

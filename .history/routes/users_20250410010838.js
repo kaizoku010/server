@@ -24,7 +24,6 @@ router.get('/', async (req, res) => {  // Added req parameter here
     res.status(500).json({ message: 'Server error' });
   }
 });
-
 // Get user profile
 router.get('/profile', verifyToken, async (req, res) => {
   try {
